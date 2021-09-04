@@ -22,7 +22,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Test export
-        run: '"JPTEST=Write-Host `"Hello there`"" | Out-File $Env:GITHUB_ENV'
+        run: |
+          '# uh test'
+          'Write-Host "This is a test"'
+          'Write-Host "Blabla"'
       
-      - name: Print export
-        run: ${{env.JPTEST}}
