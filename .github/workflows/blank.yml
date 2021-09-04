@@ -40,6 +40,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1.8.8
         with:
+          allowUpdates: true
           commit: 'main'
           name: 'Latest navigations'
           body: 'The latest versions of all .nav files'
