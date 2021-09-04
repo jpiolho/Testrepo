@@ -34,8 +34,14 @@ jobs:
           'git tag -a latest'
           'git push origin latest'
       
+      - name: Create dummy file
+        run: '"Hello there" | Out-File -FilePath .\hello.txt'
+      
       - name: Create Release
         uses: ncipollo/release-action@v1.8.8
         with:
           commit: 'main'
+          name: 'Latest navigations'
+          body: 'The latest versions of all .nav files'
+          artifacts: '.\hello.txt'
           tag: 'latest'
