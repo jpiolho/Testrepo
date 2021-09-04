@@ -5,6 +5,9 @@ name: CI
 # Controls when the workflow will run
 on:
   
+  commit:
+    branch: 'main'
+  
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -21,8 +24,16 @@ jobs:
       - uses: actions/checkout@v2
 
       
+      - name: Delete tag
+        run: '(git push --delete origin latest)'
+        
+      - name: Push new tag
+        run: |
+          'git tag -a latest'
+          'git push origin latest'
+      
       - name: Create Release
         uses: ncipollo/release-action@v1.8.8
         with:
-          commit: master
-          tag: build-1
+          commit: 'main'
+          tag: 'latest'
