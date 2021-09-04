@@ -21,28 +21,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
+      - name: Test export
+        run: '$env:jptest = "Hello there"'
       
-      - name: Delete tag
-        run: 'git push --quiet --delete origin latest'
-        continue-on-error: true
-        
-      - name: Push new tag
-        run: |
-          'git tag -a latest'
-          'git push origin latest'
-      
-      - name: Create dummy file
-        run: '"Hello there" | Out-File -FilePath .\hello.txt'
-      
-      - name: Create Release
-        uses: ncipollo/release-action@v1.8.8
-        with:
-          allowUpdates: true
-          commit: 'main'
-          name: 'Latest navigations'
-          body: 'The latest versions of all .nav files'
-          artifacts: '.\hello.txt'
-          tag: 'latest'
+      - name: Print export
+        run: 'Write-Host "$($env:jptest)"'
