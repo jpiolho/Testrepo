@@ -27,6 +27,7 @@ jobs:
       
       - name: Delete tag
         run: 'git push --quiet --delete origin latest'
+        continue-on-error: true
         
       - name: Push new tag
         run: |
